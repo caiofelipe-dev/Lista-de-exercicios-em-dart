@@ -1,4 +1,25 @@
 import 'dart:io';
+
+//Lista com todos os algorítimos:
+// final List<Function> algoritmos = [alg1, alg2, alg3, alg4, alg5, alg6, alg7, alg8, alg9, alg10, alg11, alg12, alg13, alg14, alg15];
+final Map<String, Function> algoritmosMapa = {
+  "Algoritmo 1: Cálculo de Média Ponderada": alg1,
+  "Algoritmo 2: Verificação de Par ou Ímpar": alg2,
+  "Algoritmo 3: Classificação de Idade": alg3,
+  "Algoritmo 4: Calculadora Simples (Switch)": alg4,
+  "Algoritmo 5: Acesso ao Sistema": alg5,
+  "Algoritmo 6: Semáforo (Switch)": alg6,
+  "Algoritmo 7: Desconto de Produto": alg7,
+  "Algoritmo 8: Tabuada": alg8,
+  "Algoritmo 9: Contagem Regressiva": alg9,
+  "Algoritmo 10: Soma de Números Pares (1-50)": alg10,
+  "Algoritmo 11: Média de Notas com Condição de Parada": alg11,
+  "Algoritmo 12: Números Primos em Intervalo (2-100)": alg12,
+  "Algoritmo 13: Iteração de Lista de Frutas": alg13,
+  "Algoritmo 14: Filtragem de Números (>10)": alg14,
+  "Algoritmo 15: Contagem de Ocorrências (List -> Map)": alg15
+};
+
 //Algoritmos em si:
 
 // Operadores Aritméticos
