@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'SubMenu.dart';
 import 'package:aprendendo_dart/helpers/terminal-control.dart';
-import 'package:aprendendo_dart/src/algoritmos.dart' show algoritmosMapa;
 import 'package:meta/meta.dart';
 
 enum Alignment {center, start}
@@ -17,6 +16,7 @@ class Menu {
 	dynamic options;
 	@protected
 	int _length = 70;
+
 	/// O desenho da linha do menu
 	late final String line = "+${lineFactory("-", _length-2)}+\n";
 
@@ -128,8 +128,14 @@ class Menu {
   /// Imprime o menu na tela e processa as opções
 	run({bool invalid = false, bool error = false}) {
     clear();
-    String mensagem = (error == false) ? "Digite um número para escolher a opção: ": "Valor inválido, tente novamente: ";
-		stdout.write("$this$mensagem");
+    List<String> erros = ["Valor inválido, tente novamente.\n", "Opção escolhida indisponível.\n"];
+    List<String> mensagem = [];
+    
+    if(error) mensagem.add(erros[1]);
+    if(invalid) mensagem.add(erros[0]);
+    mensagem.add("Digite um número para escolher a opção: ");
+    
+		stdout.write("$this${mensagem.join()}");
 		int input = int.parse(stdin.readLineSync()!);
 		// int input = 1;
     // print(input);
@@ -138,7 +144,6 @@ class Menu {
     if(input == 0) {
       return;
     }
-
     if( input > 0 && input <= options.length) { // verifica se o código é válido
       runOption(input);
       clear();
@@ -147,7 +152,7 @@ class Menu {
     run(invalid: true);
     return this;
 	}
-  /// Imprime ou executa a opção escolhida
+  /// Executa a opção escolhida
   dynamic runOption(int choice) {
     if(options is List) {
       // Menu com lista de opções (pode conter SubMenu objects)
@@ -164,6 +169,8 @@ class Menu {
       algorithmFunc(); // executa a função
       print("\n");
       pause();
+    } else {
+      return run(error: true);
     }
   }
 
